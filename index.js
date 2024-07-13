@@ -22,7 +22,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-        await client.connect();
+         client.connect();
 
         const allBooksCollection = client.db('libraryManagerDB').collection('allBooks');
 
@@ -126,7 +126,7 @@ async function run() {
             const borrowedRecord = await borrowedBooksCollection.findOne({ bookId, userEmail });
 
             if (borrowedRecord) {
-                // Increase the book quantity
+                
                 await allBooksCollection.updateOne(
                     { _id: new ObjectId(bookId) },
                     { $inc: { quantity: 1 } }
